@@ -1,5 +1,7 @@
 import {useRef} from 'react';
 
+import {HEXREGEXP} from '../../constants/hexRegexp';
+
 import './HexForm.css';
 
 export default function HexForm() {
@@ -41,7 +43,7 @@ export default function HexForm() {
 
   const hexToRgb = (hex: string) => {
     const match = hex.match(/\w\w/g);
-    if (!match) return [NaN];
+    if (!match || !hex.match(HEXREGEXP)) return [NaN];
     const [r, g, b] = match.map(x => parseInt(x, 16));
 
     return [r, g, b];
